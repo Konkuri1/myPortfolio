@@ -3,12 +3,11 @@ import db from "../db/connection.js";
 import { ObjectId } from "mongodb";
 
 
-
 const router = Router();
 const SKILLS_COLLECTION = db.collection("skills");
 
 // Endpoint for getting list of skills
-router.get("/", async(req,res)=>{
+router.get("/", async(req, res)=>{
     let results = await SKILLS_COLLECTION.find({}).toArray() ; 
     res.send(results).status(200);
 });
@@ -35,11 +34,11 @@ router.post("/", async (req, res)=> {
         console.log (error);
     }
 });
-// Emdpoint for updating a skill by the Id
+// Endpoint for updating a skill by the Id
 router.patch("/:id", async (req, res) => {
     try {
     const query = {_id: new ObjectId(req.params.id) };
-    const updates={
+    const updates = {
         $set:{
             skill: req.body.skill,
             proficiency: req.body.proficiency,
@@ -55,7 +54,7 @@ router.patch("/:id", async (req, res) => {
 });
 
 // Endpoint for deleting a skill by id
-router.delete ('/:id', async (req,res) => {
+router.delete ('/:id', async (req, res) => {
     try {
         const query ={_id: new ObjectId(req.params.id) };
         let result=await SKILLS_COLLECTION.deleteOne(query);
