@@ -20,6 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //load routes
 app.use('/skills', skills);
 app.use('blogs', blogs);
+app.use('projects', projects);
+app.use('achievements', achievements);
+app.use('experiences', experiences);
 
 // start the server
 app.listen(PORT, () => {
