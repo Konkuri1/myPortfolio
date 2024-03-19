@@ -27,7 +27,7 @@ router.post("/", async (req, res)=> {
         let newSkill = { 
             skill: req.body.skill,
             proficiency: req.body.proficiency
-        }
+        };
         let result = await SKILLS_COLLECTION.insertOne(newSkill);
         res.send(result).status(201);
     } catch(error) {

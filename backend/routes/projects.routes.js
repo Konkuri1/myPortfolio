@@ -7,7 +7,7 @@ const PROJECTS_COLLECTION = db.collection("projects");
 
 // Endpoint for getting list of projects
 router.get("/", async (req, res) => {
-  let results = await PROJECTS_COLLECTION.find({}).toArray();
+  let results = await PROJECTS_COLLECTION.find({}).toArray() ;
   res.send(results).status(200);
 });
 
@@ -42,8 +42,8 @@ router.patch("/:id", async (req, res) => {
       $set: {
         project: req.body.project,
       descriptiom: req.body.description,
-      image: req.body.image,
-      },
+      image: req.body.image
+      }
     };
     let result = await PROJECTS_COLLECTION.updateOne(query, update);
     res.send(result).status(200);

@@ -7,7 +7,7 @@ const ACHIEVEMENT_COLLECTION = db.collection("achievements");
 
 //Endpoint for getting list of achievements
 router.get("/", async (req, res) => {
-  let results = await ACHIEVEMENT_COLLECTION.find({}).toArray();
+  let results = await ACHIEVEMENT_COLLECTION.find({}).toArray() ;
   res.send(results).status(200);
 });
 
@@ -16,7 +16,8 @@ router.get("/:id", async (req, res) => {
   let query = { _id: new ObjectId(req.params.id) };
   let result = await ACHIEVEMENT_COLLECTION.findOne(query);
 
-  !result ? result("Not Found!").status(404) : res.send(result).status(200);
+  !result ? result("Not Found!").status(404): 
+  res.send(result).status(200);
 });
 
 //Endpoint for adding a single achievement
@@ -40,8 +41,8 @@ router.patch("/:id", async (req, res) => {
     let updates = {
       $set: {
         achievement: req.body.achievement,
-        description: req.body.description,
-      },
+        description: req.body.description
+      }
     };
     let result = await ACHIEVEMENT_COLLECTION.updateOne(query, updates);
     res.send(result).status(200);

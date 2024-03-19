@@ -7,7 +7,7 @@ const BLOGS_COLLECTION = db.collection('blogs');
 
 //Endpoint for getting list of blogs
 router.get('/', async (req, res) => {
-    let results = await BLOGS_COLLECTION.find({}).toArray();
+    let results = await BLOGS_COLLECTION.find({}).toArray() ;
     res.send(results).status(200);
 });
 
@@ -16,7 +16,7 @@ router.get('/:id', async (req, res) => {
     let query = { _id: new ObjectId(req.params.id) };
     let result = await BLOGS_COLLECTION.findOne(query);
 
-    !result ? res.send('Not Found!').status(404) :
+    !result ? res.send('Not Found!').status(404):
         res.send(result).status(200);
 });
 
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
         let newBlog = {
             blog: req.body.blog,
             article: req.body.article,
-            image: req.body.image,
+            image: req.body.image
         }
         let result = await BLOGS_COLLECTION.insertOne(newBlog);
         res.send(result).status(201);
