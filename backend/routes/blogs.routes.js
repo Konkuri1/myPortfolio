@@ -7,7 +7,7 @@ const BLOGS_COLLECTION = db.collection('blogs');
 
 //Endpoint for getting list of blogs
 router.get('/', async (req, res) => {
-    let results = await BLOGS_COLLECTION.find({}).toArray() ;
+    let results = await BLOGS_COLLECTION.find({}).toArray();
     res.send(results).status(200);
 });
 

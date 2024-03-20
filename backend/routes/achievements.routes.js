@@ -7,7 +7,7 @@ const ACHIEVEMENT_COLLECTION = db.collection("achievements");
 
 //Endpoint for getting list of achievements
 router.get("/", async (req, res) => {
-  let results = await ACHIEVEMENT_COLLECTION.find({}).toArray() ;
+  let results = await ACHIEVEMENT_COLLECTION.find({}).toArray();
   res.send(results).status(200);
 });
 

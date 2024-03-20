@@ -7,7 +7,7 @@ const PROJECTS_COLLECTION = db.collection("projects");
 
 // Endpoint for getting list of projects
 router.get("/", async (req, res) => {
-  let results = await PROJECTS_COLLECTION.find({}).toArray() ;
+  let results = await PROJECTS_COLLECTION.find({}).toArray();
   res.send(results).status(200);
 });
 
@@ -16,7 +16,8 @@ router.get("/:id", async (req, res) => {
   let query = { _id: new ObjectId(req.params.id) };
   let result = await PROJECTS_COLLECTION.findOne(query);
 
-  !result ? result("Not Found!").status(404) : res.send(result).status(200);
+  !result ? result("Not Found!").status(404): 
+  res.send(result).status(200);
 });
 
 //Endpoint for adding a single project
@@ -24,11 +25,11 @@ router.post("/", async (req, res) => {
   try {
     let newProject = {
       project: req.body.project,
-      descriptiom: req.body.description,
-      image: req.body.image,
+      description: req.body.description,
+      image: req.body.image
     };
     let result = await PROJECTS_COLLECTION.insertOne(newProject);
-    res.send(result).status(200);
+    res.send(result).status(201);
   } catch (error) {
     console.log(error);
   }
@@ -41,7 +42,7 @@ router.patch("/:id", async (req, res) => {
     const update = {
       $set: {
         project: req.body.project,
-      descriptiom: req.body.description,
+      description: req.body.description,
       image: req.body.image
       }
     };

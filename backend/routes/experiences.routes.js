@@ -24,10 +24,10 @@ router.post("/", async (req, res)=> {
     try {
         let newExperience = { 
             experience: req.body.experience,
-            role: req.content, role,
+            role: req.body.role,
             organisation: req.body.organisation,
             duration: req.body.duration,
-            location:req.body.location,
+            location:req.body.location
         }
         let result = await  EXPERIENCES_COLLECTION.insertOne(newExperience);
         res.send(result).status(201);
@@ -42,12 +42,11 @@ router.patch("/:id", async (req, res) => {
     const updates={
         $set:{
             experience: req.body.experience,
-            role: req.content, role,
+            role: req.body.role,
             organisation: req.body.organisation,
             duration: req.body.duration,
-            location:req.body.location,
-        },
-    
+            location:req.body.location
+        }
     };
     let result = await EXPERIENCES_COLLECTION.updateOne(query, updates);
     res.send(result).status(200);
