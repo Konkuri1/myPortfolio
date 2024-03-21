@@ -8,21 +8,21 @@ import achievements from "./routes/achievements.routes.js";
 import experiences from "./routes/experiences.routes.js";
 
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 const  app = express();
 
 //add middlewares
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 //load routes
 app.use("/skills", skills);
-app.use("blogs", blogs);
-app.use("projects", projects);
-app.use("achievements", achievements);
-app.use("experiences", experiences);
+app.use("/blogs", blogs);
+app.use("/projects", projects);
+app.use("/achievements", achievements);
+app.use("/experiences", experiences);
 
 // start the server
 app.listen(PORT, () => {
